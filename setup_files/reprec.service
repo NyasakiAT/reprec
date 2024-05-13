@@ -1,0 +1,14 @@
+[Unit]
+Description=Service to record from mic in
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=admin
+WorkingDirectory=/home/admin/reprec
+ExecStart=/bin/bash ./start.sh
+
+[Install]
+WantedBy=multi-user.target
