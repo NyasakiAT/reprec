@@ -3,7 +3,7 @@ from pyrogram import Client
 import pyaudio
 import wave
 import numpy as np
-from datetime import datetime
+from datetime import datetime, timezone
 import os
 import json
 
@@ -53,7 +53,7 @@ def record_audio(threshold=10, silence_duration=1, sample_rate=48000, channels=1
     stream.close()
     p.terminate()
 
-    timestamp = datetime.now()
+    timestamp = datetime.now(timezone.utc)
     filename = f"{timestamp.strftime('%Y-%m-%d_%H-%M-%S')}.wav"
     wave_file = wave.open(filename, 'wb')
     wave_file.setnchannels(channels)
