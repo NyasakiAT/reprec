@@ -1,0 +1,5 @@
+pyaudio
+wavio
+numpy
+pyrogram 
+tgcrypto 
