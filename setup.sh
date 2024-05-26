@@ -9,6 +9,7 @@ sudo cp ./setup_files/asound.conf /etc/
 
 # Setup the virtual environment for python
 virtualenv env
+source env/bin/activate
 
 # Install required packages
 pip install -r requirements.txt
