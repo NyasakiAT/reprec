@@ -1,1 +1,1 @@
-libopenblas-dev libportaudio2
+libopenblas-dev libportaudio2 python3-pip
