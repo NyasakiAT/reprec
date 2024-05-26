@@ -9,6 +9,7 @@ import json
 
 # Opening JSON file
 f = open('secrets.json')
+chat_id = "-1002080755234"
 
 # returns JSON object as 
 # a dictionary
@@ -66,7 +67,6 @@ def record_audio(threshold=10, silence_duration=1, sample_rate=48000, channels=1
     return filename
 
 async def send_audio(filename):
-    chat_id = "-1002080755234"
     print("Sending audio...")
     await app.send_audio(chat_id, filename)
     os.remove(filename)
@@ -75,6 +75,7 @@ async def send_audio(filename):
 async def main():
     async with app:
         print("Bot connected. Starting audio monitoring and sending...")
+        app.send_message(chat_id, "Bot connected. Starting audio monitoring and sending...")
         while True:
             filename = await asyncio.to_thread(record_audio)
             asyncio.create_task(send_audio(filename))
