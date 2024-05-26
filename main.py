@@ -1,5 +1,5 @@
 import asyncio
-from pyrogram import Client
+from pyrogram import Client, errors
 import pyaudio
 import wave
 import numpy as np
@@ -80,4 +80,17 @@ async def main():
             filename = await asyncio.to_thread(record_audio)
             asyncio.create_task(send_audio(filename))
 
+async def send_message():
+    group_chat_id = "-1002080755234"  # Ensure this is the correct group chat ID
+    try:
+        async with app:
+            await app.send_message(group_chat_id, "Bot connected. Starting audio monitoring and sending...")
+    except errors.PeerIdInvalid as e:
+        print(f"Peer ID Invalid Error: {e}")
+    except errors.Forbidden as e:
+        print(f"Permissions Error: {e}")
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+
+app.run(send_message())
 app.run(main())
